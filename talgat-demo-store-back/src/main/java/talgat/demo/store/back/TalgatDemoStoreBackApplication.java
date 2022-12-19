@@ -1,13 +1,13 @@
-package talgat.demo.store;
+package talgat.demo.store.back;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class TalgatDemoStoreApplication {
+public class TalgatDemoStoreBackApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(TalgatDemoStoreApplication.class, args);
+		SpringApplication.run(TalgatDemoStoreBackApplication.class, args);
 	}
 
 }

@@ -1,10 +1,10 @@
-package talgat.demo.store;
+package talgat.demo.store.back;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class TalgatDemoStoreApplicationTests {
+class TalgatDemoStoreBackApplicationTests {
 
 	@Test
 	void contextLoads() {

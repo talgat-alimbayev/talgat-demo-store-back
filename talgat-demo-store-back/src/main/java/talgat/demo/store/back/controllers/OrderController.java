@@ -1,14 +1,16 @@
 package talgat.demo.store.back.controllers;
 
+import org.jetbrains.annotations.NotNull;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Flux;
+import reactor.core.publisher.Mono;
+import talgat.demo.store.back.models.Item;
 import talgat.demo.store.back.models.Order;
 import talgat.demo.store.back.repositories.OrderRepository;
 
 @RestController
-@RequestMapping(path = "/api/orders",
-                produces = "application/json")
+@RequestMapping(path = "/api/orders")
 @CrossOrigin(origins = "*")
 public class OrderController {
     private OrderRepository orderRepo;
@@ -19,11 +21,12 @@ public class OrderController {
 
     @PostMapping(consumes = "application/json")
     @ResponseStatus(HttpStatus.CREATED)
-    public void postOrder(@RequestBody Order order){
-        orderRepo.save(order);
+    public Mono<Order> postOrder(@RequestBody Order order){
+        return orderRepo.save(order);
     }
 
-    @GetMapping(params = "all")
+    @GetMapping(params = "all",
+            produces = "application/json")
     public Flux<Order> findAllOrders(){
         return orderRepo.findAll();
     }

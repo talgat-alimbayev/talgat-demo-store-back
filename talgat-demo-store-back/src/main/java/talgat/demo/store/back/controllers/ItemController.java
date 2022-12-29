@@ -1,10 +1,8 @@
 package talgat.demo.store.back.controllers;
 
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Flux;
+import reactor.core.publisher.Mono;
 import talgat.demo.store.back.models.Item;
 import talgat.demo.store.back.repositories.ItemRepository;
 
@@ -23,4 +21,10 @@ public class ItemController {
     public Flux<Item> findAllItems(){
         return itemRepo.findAll();
     }
+
+    @GetMapping
+    public Mono<Item> findItemById(@RequestParam Long id){
+        return itemRepo.findById(id);
+    }
+
 }

@@ -1,7 +1,6 @@
 package talgat.demo.store.back.models;
 
 import lombok.Data;
-import lombok.NonNull;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.relational.core.mapping.Table;
 
@@ -14,12 +13,16 @@ import java.util.Set;
 public class Order {
     @Id
     private Long id;
-    @NonNull
+
     private String deliveryAddress;
-    @NonNull
+    private String deliveryName;
     private Set<Long> itemIds = new HashSet<>();
+
+    private BigDecimal orderTotal;
+    private String comment;
 
     public void addItem(Item item){
         itemIds.add(item.getId());
     }
+
 }

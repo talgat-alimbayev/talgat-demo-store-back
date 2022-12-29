@@ -11,6 +11,7 @@ import talgat.demo.store.back.models.Order;
 import talgat.demo.store.back.repositories.ItemRepository;
 import talgat.demo.store.back.repositories.OrderRepository;
 
+import java.math.BigDecimal;
 import java.util.Arrays;
 
 @SpringBootApplication
@@ -23,7 +24,11 @@ public class TalgatDemoStoreBackApplication {
 	@Bean
     public ApplicationRunner dataLoader(ItemRepository itemRepo, OrderRepository orderRepo){
         return (ApplicationArguments s) ->{
-            Order order1 = new Order("Алматы, БЦ Алатау Гранд");
+            Order order1 = new Order();
+            order1.setDeliveryAddress("Алматы, БЦ Алатау Гранд");
+            order1.setDeliveryName("Талгат");
+            order1.setOrderTotal(BigDecimal.ZERO);
+            order1.setComment("hello");
             itemRepo.findByNameIn(Arrays.asList("сметана", "молоко", "йогурт", "хлеб")).
                     doOnNext(item -> {
                         log.info("printing within lambda");

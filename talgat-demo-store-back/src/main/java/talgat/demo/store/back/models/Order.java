@@ -13,15 +13,12 @@ import java.util.Set;
 public class Order {
     @Id
     private Long id;
-
     private String deliveryAddress;
     private String deliveryName;
     private String email;
     private Set<Long> itemIds = new HashSet<>();
-
     private BigDecimal orderTotal;
     private String comment;
-
     public void addItem(Item item){
         itemIds.add(item.getId());
     }

@@ -1,8 +1,6 @@
 package talgat.demo.store.back.config;
 
 import io.r2dbc.spi.ConnectionFactory;
-import org.springframework.boot.ApplicationArguments;
-import org.springframework.boot.ApplicationRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.ClassPathResource;
@@ -10,10 +8,6 @@ import org.springframework.data.r2dbc.repository.config.EnableR2dbcRepositories;
 import org.springframework.r2dbc.connection.init.CompositeDatabasePopulator;
 import org.springframework.r2dbc.connection.init.ConnectionFactoryInitializer;
 import org.springframework.r2dbc.connection.init.ResourceDatabasePopulator;
-import talgat.demo.store.back.models.Item;
-import talgat.demo.store.back.repositories.ItemRepository;
-
-import java.math.BigDecimal;
 
 @Configuration
 @EnableR2dbcRepositories

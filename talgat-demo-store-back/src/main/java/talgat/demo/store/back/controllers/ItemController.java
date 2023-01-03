@@ -24,11 +24,6 @@ public class ItemController {
         return itemRepo.findAll();
     }
 
-//    @GetMapping
-//    public Mono<Item> findItemById(@RequestParam Long id){
-//        return itemRepo.findById(id);
-//    }
-
     @GetMapping
     public Flux<Item> findItemsByIds(@RequestParam List<Long> ids){
         return itemRepo.findAllById(ids);

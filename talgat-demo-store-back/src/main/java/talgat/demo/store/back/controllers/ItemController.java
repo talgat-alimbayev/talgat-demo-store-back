@@ -6,6 +6,8 @@ import reactor.core.publisher.Mono;
 import talgat.demo.store.back.models.Item;
 import talgat.demo.store.back.repositories.ItemRepository;
 
+import java.util.List;
+
 @RestController
 @RequestMapping(path = "/api/items",
         produces = "application/json")
@@ -22,9 +24,14 @@ public class ItemController {
         return itemRepo.findAll();
     }
 
+//    @GetMapping
+//    public Mono<Item> findItemById(@RequestParam Long id){
+//        return itemRepo.findById(id);
+//    }
+
     @GetMapping
-    public Mono<Item> findItemById(@RequestParam Long id){
-        return itemRepo.findById(id);
+    public Flux<Item> findItemsByIds(@RequestParam List<Long> ids){
+        return itemRepo.findAllById(ids);
     }
 
 }

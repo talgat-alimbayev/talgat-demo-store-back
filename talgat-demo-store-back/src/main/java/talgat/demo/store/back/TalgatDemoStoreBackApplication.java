@@ -27,6 +27,7 @@ public class TalgatDemoStoreBackApplication {
             Order order1 = new Order();
             order1.setDeliveryAddress("Алматы, БЦ Алатау Гранд");
             order1.setDeliveryName("Талгат");
+            order1.setEmail("fjdnkjfdnkjndg");
             order1.setOrderTotal(BigDecimal.ZERO);
             order1.setComment("hello");
             itemRepo.findByNameIn(Arrays.asList("сметана", "молоко", "йогурт", "хлеб")).

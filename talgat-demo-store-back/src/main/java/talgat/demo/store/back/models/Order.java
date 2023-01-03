@@ -16,6 +16,7 @@ public class Order {
 
     private String deliveryAddress;
     private String deliveryName;
+    private String email;
     private Set<Long> itemIds = new HashSet<>();
 
     private BigDecimal orderTotal;

@@ -34,4 +34,8 @@ public class ItemController {
         return itemRepo.findAllById(ids);
     }
 
+    @PostMapping
+    public Mono<Item> createItem(@RequestBody Item item){
+        return itemRepo.save(item);
+    }
 }

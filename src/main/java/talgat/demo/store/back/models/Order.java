@@ -1,15 +1,15 @@
 package talgat.demo.store.back.models;
 
+import jakarta.persistence.Entity;
 import lombok.Data;
 import org.springframework.data.annotation.Id;
-import org.springframework.data.relational.core.mapping.Table;
 
 import java.math.BigDecimal;
 import java.util.HashSet;
 import java.util.Set;
 
 @Data
-@Table("orders")
+@Entity(name = "orders")
 public class Order {
     @Id
     private Long id;

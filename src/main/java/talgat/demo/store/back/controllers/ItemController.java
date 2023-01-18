@@ -10,7 +10,7 @@ import java.util.List;
 @RestController
 @RequestMapping(path = "/api/items",
         produces = "application/json")
-@CrossOrigin(origins = {"http://localhost:3871", "http://localhost:8081", "http://localhost:8082"})
+@CrossOrigin(origins = {"http://localhost:3870", "http://localhost:8081", "http://localhost:8082"})
 public class ItemController {
     private ItemRepository itemRepo;
     @Autowired

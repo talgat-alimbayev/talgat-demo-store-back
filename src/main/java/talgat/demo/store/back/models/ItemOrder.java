@@ -9,10 +9,11 @@ import lombok.NoArgsConstructor;
 import lombok.NonNull;
 
 import java.math.BigDecimal;
+
 @Data
 @NoArgsConstructor
-@Entity(name = "items")
-public class Item {
+@Entity(name = "itemsOrder")
+public class ItemOrder {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;

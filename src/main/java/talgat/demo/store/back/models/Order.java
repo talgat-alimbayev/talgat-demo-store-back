@@ -1,15 +1,11 @@
 package talgat.demo.store.back.models;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.math.BigDecimal;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 
 @Data
 @NoArgsConstructor
@@ -21,11 +17,19 @@ public class Order {
     private String deliveryAddress;
     private String deliveryName;
     private String email;
-    private Set<Long> itemIds = new HashSet<>();
-    private BigDecimal orderTotal;
+    @OneToMany(cascade = CascadeType.ALL)
+    private List<ItemOrder> items = new ArrayList<>();
     private String comment;
-    public void addItem(Item item){
-        itemIds.add(item.getId());
+    public void addItem(ItemOrder itemOrder){
+        items.add(itemOrder);
     }
 
+    public Order(OrderDto orderDto){
+        this.id = orderDto.getId();
+        this.deliveryAddress = orderDto.getDeliveryAddress();
+        this.deliveryName = orderDto.getDeliveryName();
+        this.email = orderDto.getEmail();
+        this.items = orderDto.getItems();
+        this.comment = orderDto.getComment();
+    }
 }

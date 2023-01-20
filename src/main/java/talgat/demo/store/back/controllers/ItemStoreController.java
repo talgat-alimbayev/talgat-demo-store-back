@@ -11,10 +11,10 @@ import java.util.List;
 @RequestMapping(path = "/api/items",
         produces = "application/json")
 @CrossOrigin(origins = {"http://localhost:3870", "http://localhost:8081", "http://localhost:8082"})
-public class ItemController {
+public class ItemStoreController {
     private ItemStoreService itemStoreService;
     @Autowired
-    public ItemController(ItemStoreService itemStoreService) {
+    public ItemStoreController(ItemStoreService itemStoreService) {
         this.itemStoreService = itemStoreService;
     }
 

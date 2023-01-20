@@ -4,28 +4,30 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import talgat.demo.store.back.models.Order;
+import talgat.demo.store.back.models.OrderDto;
 import talgat.demo.store.back.repositories.OrderRepository;
+import talgat.demo.store.back.services.OrderService;
 
 @RestController
 @RequestMapping(path = "/api/orders")
 @CrossOrigin(origins = "*")
 public class OrderController {
-    private OrderRepository orderRepo;
+    private OrderService orderService;
     @Autowired
-    public OrderController(OrderRepository orderRepo) {
-        this.orderRepo = orderRepo;
+    public OrderController(OrderRepository orderRepo, OrderService orderService) {
+        this.orderService = orderService;
     }
 
     @PostMapping(consumes = "application/json")
     @ResponseStatus(HttpStatus.CREATED)
-    public Order postOrder(@RequestBody Order order){
-        return orderRepo.save(order);
+    public OrderDto saveOrder(@RequestBody OrderDto orderDto){
+        return orderService.saveOrder(orderDto);
     }
 
     @GetMapping(params = "all",
             produces = "application/json")
-    public Iterable<Order> findAllOrders(){
-        return orderRepo.findAll();
+    public Iterable<OrderDto> findAllOrders(){
+        return orderService.findAllOrders();
     }
 
 }

@@ -9,15 +9,16 @@ import java.util.List;
 
 @Data
 @NoArgsConstructor
-@Entity(name = "orders")
+@Entity
+@Table(name = "orders")
 public class Order {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String deliveryAddress;
     private String deliveryName;
     private String email;
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "order")
     private List<ItemOrder> items = new ArrayList<>();
     private String comment;
     public void addItem(ItemOrder itemOrder){

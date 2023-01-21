@@ -12,9 +12,9 @@ import java.math.BigDecimal;
 @MappedSuperclass
 @Data
 @NoArgsConstructor
-abstract class Item {
+public abstract class Item {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     protected Long id;
     @NonNull
     protected String name;

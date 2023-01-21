@@ -18,11 +18,11 @@ public class OrderController {
         this.orderService = orderService;
     }
 
-    @PostMapping(consumes = "application/json")
-    @ResponseStatus(HttpStatus.CREATED)
-    public OrderDto saveOrder(@RequestBody OrderDto orderDto){
-        return orderService.saveOrder(orderDto);
-    }
+//    @PostMapping(consumes = "application/json")
+//    @ResponseStatus(HttpStatus.CREATED)
+//    public OrderDto saveOrder(@RequestBody OrderDto orderDto){
+//        return orderService.saveOrder(orderDto);
+//    }
 
     @GetMapping(params = "all",
             produces = "application/json")

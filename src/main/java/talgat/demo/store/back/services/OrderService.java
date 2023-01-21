@@ -23,10 +23,8 @@ public class OrderService {
         this.orderRepo = orderRepo;
     }
 
-    public OrderDto saveOrder(OrderDto orderDto){
-        Order order = new Order(orderDto);
-        Order orderSaved = orderRepo.save(order);
-        return new OrderDto(orderSaved);
+    public Order saveOrder(Order order){
+        return orderRepo.save(order);
     }
 
     public Iterable<OrderDto> findAllOrders(){

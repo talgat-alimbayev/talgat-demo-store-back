@@ -6,4 +6,4 @@ INSERT INTO items_store (name, price) VALUES ('йогурт', 380.4);
 INSERT INTO items_store (name, price) VALUES ('рис', 104.15);
 INSERT INTO items_store (name, price) VALUES ('гречка', 280.5);
 
-TRUNCATE TABLE orders;
+TRUNCATE TABLE orders CASCADE;

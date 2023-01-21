@@ -1,12 +1,27 @@
 package talgat.demo.store.back.models;
 
-import jakarta.persistence.Entity;
+import jakarta.persistence.*;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.NonNull;
 
-@Entity(name = "items_store")
+import java.math.BigDecimal;
+
+@Entity
+@Table(name = "items_store")
+@NoArgsConstructor
+@Data
 public class ItemStore extends Item{
-    public ItemStore(ItemDto itemDto){
-        this.id = itemDto.getId();
-        this.name = itemDto.getName();
-        this.price = itemDto.getPrice();
+
+//    @Id
+//    @GeneratedValue(strategy = GenerationType.IDENTITY)
+//    protected Long id;
+//    @NonNull
+//    protected String name;
+//    @NonNull
+//    protected BigDecimal price;
+    public ItemStore(ItemStoreDto itemStoreDto){
+        this.name = itemStoreDto.getName();
+        this.price = itemStoreDto.getPrice();
     }
 }

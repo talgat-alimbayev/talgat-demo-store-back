@@ -24,10 +24,17 @@ public class ItemStoreService {
         return itemStoreRepo.findAllById(ids);
     }
 
-    public Optional<ItemStore> findItemByIds(Long id){
+    public Iterable<ItemStore> findItemsByName(List<String> names){
+        return itemStoreRepo.findByNameIn(names);
+    }
+
+    public Optional<ItemStore> findItemById(Long id){
         return itemStoreRepo.findById(id);
     }
 
+    public Optional<ItemStore> findItemByName(String name){
+        return itemStoreRepo.findByName(name);
+    }
     public ItemStore createItem(ItemStore item){
         return itemStoreRepo.save(item);
     }

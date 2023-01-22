@@ -1,9 +1,6 @@
 package talgat.demo.store.back.models;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
@@ -12,7 +9,7 @@ import lombok.Setter;
 @NoArgsConstructor
 @Setter
 public class ItemOrder extends Item{
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "order_id")
     private Order order;
     public ItemOrder(ItemDto itemDto){

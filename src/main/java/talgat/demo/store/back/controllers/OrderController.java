@@ -9,7 +9,7 @@ import talgat.demo.store.back.repositories.OrderRepository;
 import talgat.demo.store.back.services.OrderService;
 
 @RestController
-@RequestMapping(path = "/api/orders")
+@RequestMapping(produces = "application/json")
 @CrossOrigin(origins = "*")
 public class OrderController {
     private OrderService orderService;
@@ -24,8 +24,7 @@ public class OrderController {
 //        return orderService.saveOrder(orderDto);
 //    }
 
-    @GetMapping(params = "all",
-            produces = "application/json")
+    @GetMapping(path = "api/orders/find", params = "all")
     public Iterable<OrderDto> findAllOrders(){
         return orderService.findAllOrders();
     }

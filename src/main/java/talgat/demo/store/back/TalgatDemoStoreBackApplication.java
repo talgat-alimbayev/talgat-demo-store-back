@@ -5,7 +5,10 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+import org.springframework.transaction.annotation.Transactional;
 import talgat.demo.store.back.models.*;
+import talgat.demo.store.back.repositories.ItemOrderRepository;
+import talgat.demo.store.back.repositories.UserRepository;
 import talgat.demo.store.back.services.ItemStoreService;
 import talgat.demo.store.back.services.OrderService;
 
@@ -20,18 +23,30 @@ public class TalgatDemoStoreBackApplication {
 	}
 
 	@Bean
-	public CommandLineRunner dataLoader(OrderService orderService, ItemStoreService itemStoreService){
+	public CommandLineRunner dataLoader(OrderService orderService, ItemStoreService itemStoreService,
+										ItemOrderRepository itemOrderRepo, UserRepository userRepo){
 		return new CommandLineRunner() {
 			@Override
+//			@Transactional
 			public void run(String... args) throws Exception {
+				User user = new User();
+				user.setUsername("talimbayev");
+				user.setPassword("dgnlkfdnglknfdg");
+				user.setFullName("talgat alimbayev");
+				user.setAddress("Almaty");
+				user.setEmail("blah@blah.com");
+				user.setRole("USER");
+
+				userRepo.save(user);
+
 				ItemStore itemStore = new ItemStore();
 				itemStore.setName("кефир");
 				itemStore.setPrice(new BigDecimal(350));
 				log.info(itemStore.toString());
 				itemStoreService.createItem(itemStore);
-				ItemStore itemStore1 = itemStoreService.findItemByIds(1L).get();
+				ItemStore itemStore1 = itemStoreService.findItemById(1L).get();
 				log.info(itemStore1.getId().toString() + " " + itemStore1.getName());
-				ItemStore itemStore2 = itemStoreService.findItemByIds(2L).get();
+				ItemStore itemStore2 = itemStoreService.findItemById(2L).get();
 				log.info(itemStore2.toString());
 				ItemStoreDto itemStoreDto1 = new ItemStoreDto(itemStore1);
 				ItemStoreDto itemStoreDto2 = new ItemStoreDto(itemStore2);
@@ -42,12 +57,16 @@ public class TalgatDemoStoreBackApplication {
 				order.setDeliveryAddress("Алматы");
 				order.setDeliveryName("Талгат");
 				order.setEmail("blah@blah.com");
-				order.addItem(itemOrder1);
-				order.addItem(itemOrder2);
-
-//				itemOrder1.setOrder(order);
-//				itemOrder2.setOrder(order);
+				order.setUser(user);
 				orderService.saveOrder(order);
+				itemOrder1.setOrder(order);
+				itemOrder2.setOrder(order);
+				itemOrderRepo.save(itemOrder1);
+				itemOrderRepo.save(itemOrder2);
+//				order.addItem(itemOrder1);
+//				order.addItem(itemOrder2);
+
+//
 			}
 		};
 	}

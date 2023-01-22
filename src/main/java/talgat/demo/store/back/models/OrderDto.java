@@ -13,7 +13,7 @@ public class OrderDto {
     private String deliveryAddress;
     private String deliveryName;
     private String email;
-    private List<ItemOrder> items = new ArrayList<>();
+//    private List<ItemOrder> items = new ArrayList<>();
     private String comment;
 
     public OrderDto(Order order){
@@ -21,7 +21,7 @@ public class OrderDto {
         this.deliveryAddress = order.getDeliveryAddress();
         this.deliveryName = order.getDeliveryName();
         this.email = order.getEmail();
-        this.items = order.getItems();
+//        this.items = order.getItems();
         this.comment = order.getComment();
     }
 }

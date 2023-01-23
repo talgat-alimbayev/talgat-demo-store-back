@@ -19,8 +19,6 @@ public class ItemOrderController {
 
     @GetMapping(path = "api/orders/items/find-by-orderid")
     public Iterable<ItemOrderDto> findItemsByIds(@RequestParam Long orderId){
-        List<ItemOrderDto> items = new ArrayList<>();
-        itemOrderService.findItemsByOrder(orderId).forEach(itemOrder -> items.add(new ItemOrderDto(itemOrder)));
-        return items;
+        return itemOrderService.findItemsByOrder(orderId);
     }
 }

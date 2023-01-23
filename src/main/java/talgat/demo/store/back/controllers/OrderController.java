@@ -29,4 +29,8 @@ public class OrderController {
         return orderService.findAllOrders();
     }
 
+    @GetMapping(path = "api/orders/find-by-userid")
+    public Iterable<OrderDto> findOrderByUserid(@RequestParam Long userid){
+        return orderService.findByUserId(userid);
+    }
 }

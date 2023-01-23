@@ -12,7 +12,7 @@ import java.math.BigDecimal;
 @MappedSuperclass
 @Data
 @NoArgsConstructor
-public abstract class Item {
+public abstract class ItemAbstract {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     protected Long id;

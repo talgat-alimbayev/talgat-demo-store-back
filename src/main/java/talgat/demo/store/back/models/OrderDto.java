@@ -13,8 +13,9 @@ public class OrderDto {
     private String deliveryAddress;
     private String deliveryName;
     private String email;
-//    private List<ItemOrder> items = new ArrayList<>();
+    private List<ItemOrderDto> items = new ArrayList<>();
     private String comment;
+    private Long userId;
 
     public OrderDto(Order order){
         this.id = order.getId();
@@ -23,5 +24,6 @@ public class OrderDto {
         this.email = order.getEmail();
 //        this.items = order.getItems();
         this.comment = order.getComment();
+        this.userId = order.getUser().getId();
     }
 }

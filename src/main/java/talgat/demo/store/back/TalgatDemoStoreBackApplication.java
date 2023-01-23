@@ -39,17 +39,14 @@ public class TalgatDemoStoreBackApplication {
 
 				userRepo.save(user);
 
-				ItemStore itemStore = new ItemStore();
+				ItemStoreDto itemStore = new ItemStoreDto();
 				itemStore.setName("кефир");
 				itemStore.setPrice(new BigDecimal(350));
 				log.info(itemStore.toString());
 				itemStoreService.createItem(itemStore);
-				ItemStore itemStore1 = itemStoreService.findItemById(1L).get();
-				log.info(itemStore1.getId().toString() + " " + itemStore1.getName());
-				ItemStore itemStore2 = itemStoreService.findItemById(2L).get();
-				log.info(itemStore2.toString());
-				ItemStoreDto itemStoreDto1 = new ItemStoreDto(itemStore1);
-				ItemStoreDto itemStoreDto2 = new ItemStoreDto(itemStore2);
+
+				ItemStoreDto itemStoreDto1 = itemStoreService.findItemById(1L).getBody();
+				ItemStoreDto itemStoreDto2 = itemStoreService.findItemById(2L).getBody();
 				ItemOrder itemOrder1 = new ItemOrder(itemStoreDto1);
 				ItemOrder itemOrder2 = new ItemOrder(itemStoreDto2);
 
@@ -58,7 +55,9 @@ public class TalgatDemoStoreBackApplication {
 				order.setDeliveryName("Талгат");
 				order.setEmail("blah@blah.com");
 				order.setUser(user);
-				orderService.saveOrder(order);
+				OrderDto orderDto = new OrderDto(order);
+
+				orderService.saveOrder(orderDto);
 				itemOrder1.setOrder(order);
 				itemOrder2.setOrder(order);
 				itemOrderRepo.save(itemOrder1);

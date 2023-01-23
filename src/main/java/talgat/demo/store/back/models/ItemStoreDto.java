@@ -6,9 +6,9 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 public class ItemStoreDto extends ItemDto {
-    public ItemStoreDto(Item item) {
-        this.id = item.getId();
-        this.name = item.getName();
-        this.price = item.getPrice();
+    public ItemStoreDto(ItemAbstract itemAbstract) {
+        this.id = itemAbstract.getId();
+        this.name = itemAbstract.getName();
+        this.price = itemAbstract.getPrice();
     }
 }

@@ -8,7 +8,7 @@ import lombok.Setter;
 @Table(name = "items_order")
 @NoArgsConstructor
 @Setter
-public class ItemOrder extends Item{
+public class ItemOrder extends ItemAbstract {
     @ManyToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "order_id")
     private Order order;

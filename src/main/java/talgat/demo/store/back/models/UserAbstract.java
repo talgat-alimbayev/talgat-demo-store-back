@@ -1,7 +1,8 @@
 package talgat.demo.store.back.models;
 
+import jakarta.persistence.MappedSuperclass;
 import lombok.Data;
-
+@MappedSuperclass
 @Data
 public abstract class UserAbstract {
     protected String username;

@@ -55,7 +55,6 @@ public class ItemStoreService {
     }
     public ItemStoreDto createItem(ItemStoreDto itemStoreDto){
         ItemStore itemStore = new ItemStore(itemStoreDto);
-        itemStoreRepo.save(itemStore);
-        return itemStoreDto;
+        return new ItemStoreDto(itemStoreRepo.save(itemStore));
     }
 }

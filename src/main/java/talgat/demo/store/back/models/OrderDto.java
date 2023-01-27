@@ -22,7 +22,6 @@ public class OrderDto {
         this.deliveryAddress = order.getDeliveryAddress();
         this.deliveryName = order.getDeliveryName();
         this.email = order.getEmail();
-//        this.items = order.getItems();
         this.comment = order.getComment();
         this.userId = order.getUser().getId();
     }

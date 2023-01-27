@@ -2,6 +2,7 @@ package talgat.demo.store.back.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import talgat.demo.store.back.models.Order;
 import talgat.demo.store.back.models.OrderDto;
@@ -18,11 +19,11 @@ public class OrderController {
         this.orderService = orderService;
     }
 
-//    @PostMapping(consumes = "application/json")
-//    @ResponseStatus(HttpStatus.CREATED)
-//    public OrderDto saveOrder(@RequestBody OrderDto orderDto){
-//        return orderService.saveOrder(orderDto);
-//    }
+    @PostMapping(path = "api/orders/save", consumes = "application/json")
+    @ResponseStatus(HttpStatus.CREATED)
+    public ResponseEntity<OrderDto> saveOrder(@RequestBody OrderDto orderDto){
+        return orderService.saveOrder(orderDto);
+    }
 
     @GetMapping(path = "api/orders/find", params = "all")
     public Iterable<OrderDto> findAllOrders(){

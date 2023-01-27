@@ -15,7 +15,6 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-@Slf4j
 public class OrderService {
     private OrderRepository orderRepo;
     private UserRepository userRepo;
@@ -29,7 +28,6 @@ public class OrderService {
     @Transactional
     public ResponseEntity<OrderDto> saveOrder(OrderDto orderDto){
         Optional<User> userOptional = userRepo.findById(orderDto.getUserId());
-//        log.info(userOptional.get().getId().toString());
         if (userOptional.isPresent()){
             User user = userOptional.get();
 

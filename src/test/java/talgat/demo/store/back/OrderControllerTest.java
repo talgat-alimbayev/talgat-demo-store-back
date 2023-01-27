@@ -5,20 +5,20 @@ import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
-import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import talgat.demo.store.back.controllers.ItemStoreController;
-import talgat.demo.store.back.models.ItemStore;
+import talgat.demo.store.back.controllers.OrderController;
+import talgat.demo.store.back.models.ItemOrderDto;
 import talgat.demo.store.back.models.ItemStoreDto;
-import talgat.demo.store.back.repositories.ItemStoreRepository;
+import talgat.demo.store.back.models.OrderDto;
 import talgat.demo.store.back.services.ItemStoreService;
+import talgat.demo.store.back.services.OrderService;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -28,27 +28,51 @@ import java.util.Objects;
 import java.util.stream.Collectors;
 
 import static org.hamcrest.Matchers.hasSize;
-import static org.hamcrest.Matchers.is;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-@WebMvcTest(controllers = ItemStoreController.class)
-@ContextConfiguration(classes = ItemStoreController.class)
-public class ItemStoreControllerTest {
+@WebMvcTest(controllers = OrderController.class)
+@ContextConfiguration(classes = OrderController.class)
+public class OrderControllerTest {
     @Autowired
     MockMvc mockMvc;
     @Autowired
     ObjectMapper objectMapper;
     @MockBean
-    ItemStoreService itemStoreService;
-    ItemStoreDto itemStore1 = new ItemStoreDto(1L, "кетчуп", new BigDecimal(789));
-    ItemStoreDto itemStore2 = new ItemStoreDto(2L, "шпроты", new BigDecimal(456));
-    ItemStoreDto itemStore3 = new ItemStoreDto(3L, "макароны", new BigDecimal(123));
-    List<ItemStoreDto> items = Arrays.asList(itemStore1, itemStore2, itemStore3);
+    OrderService orderService;
+    ItemOrderDto itemStore1 = new ItemOrderDto(1L, "кетчуп", new BigDecimal(789));
+    ItemOrderDto itemStore2 = new ItemOrderDto(2L, "шпроты", new BigDecimal(456));
+    ItemOrderDto itemStore3 = new ItemOrderDto(3L, "макароны", new BigDecimal(123));
+    List<ItemOrderDto> items1 = Arrays.asList(itemStore1, itemStore2, itemStore3);
+    OrderDto orderDto1 = new OrderDto();
+
+    ItemOrderDto itemStore4 = new ItemOrderDto(4L, "хлеб", new BigDecimal(111));
+    ItemOrderDto itemStore5 = new ItemOrderDto(5L, "молоко", new BigDecimal(222));
+    ItemOrderDto itemStore6 = new ItemOrderDto(6L, "кефир", new BigDecimal(333));
+    List<ItemOrderDto> items2 = Arrays.asList(itemStore4, itemStore5, itemStore6);
+    OrderDto orderDto2 = new OrderDto();
+    public OrderControllerTest(){
+        orderDto1.setId(1L);
+        orderDto1.setDeliveryAddress("Алматы, БЦ Алатау Гранд");
+        orderDto1.setDeliveryName("Талгат");
+        orderDto1.setEmail("example@example.com");
+        orderDto1.setItems(items1);
+        orderDto1.setComment("some comment");
+        orderDto1.setUserId(1L);
+
+        orderDto2.setId(2L);
+        orderDto2.setDeliveryAddress("Астана, БЦ Москва");
+        orderDto2.setDeliveryName("Талгат");
+        orderDto2.setEmail("exampleexample@example.com");
+        orderDto2.setItems(items2);
+        orderDto2.setComment("one comment");
+        orderDto2.setUserId(2L);
+    }
+
     @Test
     public void findAllItems_success() throws Exception {
 
-        Mockito.when(itemStoreService.findAllItems()).thenReturn(items);
+        Mockito.when(orderService.saveOrder()).thenReturn(items);
 
         mockMvc.perform(MockMvcRequestBuilders
                 .get("http://localhost:8080/api/store/items/find?all")

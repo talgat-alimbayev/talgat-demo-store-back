@@ -15,7 +15,7 @@ import talgat.demo.store.back.services.OrderService;
 public class OrderController {
     private OrderService orderService;
     @Autowired
-    public OrderController(OrderRepository orderRepo, OrderService orderService) {
+    public OrderController(OrderService orderService) {
         this.orderService = orderService;
     }
 

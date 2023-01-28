@@ -4,10 +4,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import talgat.demo.store.back.models.Order;
 import talgat.demo.store.back.models.OrderDto;
-import talgat.demo.store.back.repositories.OrderRepository;
 import talgat.demo.store.back.services.OrderService;
+import talgat.demo.store.back.services.email.OrderEmailService;
 
 @RestController
 @RequestMapping(produces = "application/json")

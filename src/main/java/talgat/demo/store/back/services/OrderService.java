@@ -1,6 +1,5 @@
 package talgat.demo.store.back.services;
 
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -9,6 +8,7 @@ import talgat.demo.store.back.models.*;
 import talgat.demo.store.back.repositories.ItemOrderRepository;
 import talgat.demo.store.back.repositories.OrderRepository;
 import talgat.demo.store.back.repositories.UserRepository;
+import talgat.demo.store.back.services.email.OrderEmailService;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,11 +19,13 @@ public class OrderService {
     private OrderRepository orderRepo;
     private UserRepository userRepo;
     private ItemOrderRepository itemOrderRepo;
+    private OrderEmailService orderEmailService;
 
-    public OrderService(OrderRepository orderRepo, UserRepository userRepo, ItemOrderRepository itemOrderRepo) {
+    public OrderService(OrderRepository orderRepo, UserRepository userRepo, ItemOrderRepository itemOrderRepo, OrderEmailService orderEmailService) {
         this.orderRepo = orderRepo;
         this.userRepo = userRepo;
         this.itemOrderRepo = itemOrderRepo;
+        this.orderEmailService = orderEmailService;
     }
     @Transactional
     public ResponseEntity<OrderDto> saveOrder(OrderDto orderDto){
@@ -42,6 +44,8 @@ public class OrderService {
                     });
             itemsOrder.forEach(itemOrder -> itemOrder.setOrder(order));
             itemOrderRepo.saveAll(itemsOrder);
+
+            orderEmailService.sendOrderEmail(orderDto);
 
             return new ResponseEntity<>(orderDto, HttpStatus.CREATED);
         }

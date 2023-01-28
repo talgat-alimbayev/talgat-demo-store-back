@@ -35,15 +35,15 @@ public class OrderControllerTest {
     ObjectMapper objectMapper;
     @MockBean
     OrderService orderService;
-    ItemOrderDto itemStore1 = new ItemOrderDto(1L, "кетчуп", new BigDecimal(789));
-    ItemOrderDto itemStore2 = new ItemOrderDto(2L, "шпроты", new BigDecimal(456));
-    ItemOrderDto itemStore3 = new ItemOrderDto(3L, "макароны", new BigDecimal(123));
+    ItemOrderDto itemStore1 = new ItemOrderDto("кетчуп", new BigDecimal(789));
+    ItemOrderDto itemStore2 = new ItemOrderDto("шпроты", new BigDecimal(456));
+    ItemOrderDto itemStore3 = new ItemOrderDto("макароны", new BigDecimal(123));
     List<ItemOrderDto> items1 = Arrays.asList(itemStore1, itemStore2, itemStore3);
     OrderDto orderDto1 = new OrderDto();
 
-    ItemOrderDto itemStore4 = new ItemOrderDto(4L, "хлеб", new BigDecimal(111));
-    ItemOrderDto itemStore5 = new ItemOrderDto(5L, "молоко", new BigDecimal(222));
-    ItemOrderDto itemStore6 = new ItemOrderDto(6L, "кефир", new BigDecimal(333));
+    ItemOrderDto itemStore4 = new ItemOrderDto("хлеб", new BigDecimal(111));
+    ItemOrderDto itemStore5 = new ItemOrderDto("молоко", new BigDecimal(222));
+    ItemOrderDto itemStore6 = new ItemOrderDto("кефир", new BigDecimal(333));
     List<ItemOrderDto> items2 = Arrays.asList(itemStore4, itemStore5, itemStore6);
     OrderDto orderDto2 = new OrderDto();
     OrderDto orderDto3 = new OrderDto();
@@ -88,13 +88,10 @@ public class OrderControllerTest {
                 .andExpect(jsonPath("$.deliveryAddress").value(orderDto1.getDeliveryAddress()))
                 .andExpect(jsonPath("$.deliveryName").value(orderDto1.getDeliveryName()))
                 .andExpect(jsonPath("$.email").value(orderDto1.getEmail()))
-                .andExpect(jsonPath("$.items[0].id").value(orderDto1.getItems().get(0).getId()))
                 .andExpect(jsonPath("$.items[0].name").value(orderDto1.getItems().get(0).getName()))
                 .andExpect(jsonPath("$.items[0].price").value(orderDto1.getItems().get(0).getPrice()))
-                .andExpect(jsonPath("$.items[1].id").value(orderDto1.getItems().get(1).getId()))
                 .andExpect(jsonPath("$.items[1].name").value(orderDto1.getItems().get(1).getName()))
                 .andExpect(jsonPath("$.items[1].price").value(orderDto1.getItems().get(1).getPrice()))
-                .andExpect(jsonPath("$.items[2].id").value(orderDto1.getItems().get(2).getId()))
                 .andExpect(jsonPath("$.items[2].name").value(orderDto1.getItems().get(2).getName()))
                 .andExpect(jsonPath("$.items[2].price").value(orderDto1.getItems().get(2).getPrice()))
                 .andExpect(jsonPath("$.comment").value(orderDto1.getComment()))
@@ -118,13 +115,10 @@ public class OrderControllerTest {
                 .andExpect(jsonPath("$[0].deliveryAddress").value(orderDto1.getDeliveryAddress()))
                 .andExpect(jsonPath("$[0].deliveryName").value(orderDto1.getDeliveryName()))
                 .andExpect(jsonPath("$[0].email").value(orderDto1.getEmail()))
-                .andExpect(jsonPath("$[0].items[0].id").value(orderDto1.getItems().get(0).getId()))
                 .andExpect(jsonPath("$[0].items[0].name").value(orderDto1.getItems().get(0).getName()))
                 .andExpect(jsonPath("$[0].items[0].price").value(orderDto1.getItems().get(0).getPrice()))
-                .andExpect(jsonPath("$[0].items[1].id").value(orderDto1.getItems().get(1).getId()))
                 .andExpect(jsonPath("$[0].items[1].name").value(orderDto1.getItems().get(1).getName()))
                 .andExpect(jsonPath("$[0].items[1].price").value(orderDto1.getItems().get(1).getPrice()))
-                .andExpect(jsonPath("$[0].items[2].id").value(orderDto1.getItems().get(2).getId()))
                 .andExpect(jsonPath("$[0].items[2].name").value(orderDto1.getItems().get(2).getName()))
                 .andExpect(jsonPath("$[0].items[2].price").value(orderDto1.getItems().get(2).getPrice()))
                 .andExpect(jsonPath("$[0].comment").value(orderDto1.getComment()))
@@ -133,13 +127,10 @@ public class OrderControllerTest {
                 .andExpect(jsonPath("$[1].deliveryAddress").value(orderDto2.getDeliveryAddress()))
                 .andExpect(jsonPath("$[1].deliveryName").value(orderDto2.getDeliveryName()))
                 .andExpect(jsonPath("$[1].email").value(orderDto2.getEmail()))
-                .andExpect(jsonPath("$[1].items[0].id").value(orderDto2.getItems().get(0).getId()))
                 .andExpect(jsonPath("$[1].items[0].name").value(orderDto2.getItems().get(0).getName()))
                 .andExpect(jsonPath("$[1].items[0].price").value(orderDto2.getItems().get(0).getPrice()))
-                .andExpect(jsonPath("$[1].items[1].id").value(orderDto2.getItems().get(1).getId()))
                 .andExpect(jsonPath("$[1].items[1].name").value(orderDto2.getItems().get(1).getName()))
                 .andExpect(jsonPath("$[1].items[1].price").value(orderDto2.getItems().get(1).getPrice()))
-                .andExpect(jsonPath("$[1].items[2].id").value(orderDto2.getItems().get(2).getId()))
                 .andExpect(jsonPath("$[1].items[2].name").value(orderDto2.getItems().get(2).getName()))
                 .andExpect(jsonPath("$[1].items[2].price").value(orderDto2.getItems().get(2).getPrice()))
                 .andExpect(jsonPath("$[1].comment").value(orderDto2.getComment()))
@@ -162,13 +153,10 @@ public class OrderControllerTest {
                 .andExpect(jsonPath("$[0].deliveryAddress").value(orderDto1.getDeliveryAddress()))
                 .andExpect(jsonPath("$[0].deliveryName").value(orderDto1.getDeliveryName()))
                 .andExpect(jsonPath("$[0].email").value(orderDto1.getEmail()))
-                .andExpect(jsonPath("$[0].items[0].id").value(orderDto1.getItems().get(0).getId()))
                 .andExpect(jsonPath("$[0].items[0].name").value(orderDto1.getItems().get(0).getName()))
                 .andExpect(jsonPath("$[0].items[0].price").value(orderDto1.getItems().get(0).getPrice()))
-                .andExpect(jsonPath("$[0].items[1].id").value(orderDto1.getItems().get(1).getId()))
                 .andExpect(jsonPath("$[0].items[1].name").value(orderDto1.getItems().get(1).getName()))
                 .andExpect(jsonPath("$[0].items[1].price").value(orderDto1.getItems().get(1).getPrice()))
-                .andExpect(jsonPath("$[0].items[2].id").value(orderDto1.getItems().get(2).getId()))
                 .andExpect(jsonPath("$[0].items[2].name").value(orderDto1.getItems().get(2).getName()))
                 .andExpect(jsonPath("$[0].items[2].price").value(orderDto1.getItems().get(2).getPrice()))
                 .andExpect(jsonPath("$[0].comment").value(orderDto1.getComment()))
@@ -177,13 +165,10 @@ public class OrderControllerTest {
                 .andExpect(jsonPath("$[1].deliveryAddress").value(orderDto3.getDeliveryAddress()))
                 .andExpect(jsonPath("$[1].deliveryName").value(orderDto3.getDeliveryName()))
                 .andExpect(jsonPath("$[1].email").value(orderDto3.getEmail()))
-                .andExpect(jsonPath("$[1].items[0].id").value(orderDto3.getItems().get(0).getId()))
                 .andExpect(jsonPath("$[1].items[0].name").value(orderDto3.getItems().get(0).getName()))
                 .andExpect(jsonPath("$[1].items[0].price").value(orderDto3.getItems().get(0).getPrice()))
-                .andExpect(jsonPath("$[1].items[1].id").value(orderDto3.getItems().get(1).getId()))
                 .andExpect(jsonPath("$[1].items[1].name").value(orderDto3.getItems().get(1).getName()))
                 .andExpect(jsonPath("$[1].items[1].price").value(orderDto3.getItems().get(1).getPrice()))
-                .andExpect(jsonPath("$[1].items[2].id").value(orderDto3.getItems().get(2).getId()))
                 .andExpect(jsonPath("$[1].items[2].name").value(orderDto3.getItems().get(2).getName()))
                 .andExpect(jsonPath("$[1].items[2].price").value(orderDto3.getItems().get(2).getPrice()))
                 .andExpect(jsonPath("$[1].comment").value(orderDto3.getComment()))

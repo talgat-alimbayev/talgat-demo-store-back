@@ -1,8 +1,10 @@
 package talgat.demo.store.back.models;
 
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
+@NoArgsConstructor
 public class UserDto extends UserAbstract{
     private Long id;
 

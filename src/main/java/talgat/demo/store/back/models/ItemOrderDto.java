@@ -9,13 +9,11 @@ import java.math.BigDecimal;
 @NoArgsConstructor
 public class ItemOrderDto extends ItemDto {
 
-    public ItemOrderDto(Long id, String name, BigDecimal price) {
-        this.id = id;
+    public ItemOrderDto(String name, BigDecimal price) {
         this.name = name;
         this.price = price;
     }
     public ItemOrderDto(ItemAbstract itemAbstract) {
-        this.id = itemAbstract.getId();
         this.name = itemAbstract.getName();
         this.price = itemAbstract.getPrice();
     }

@@ -8,6 +8,7 @@ import java.math.BigDecimal;
 @Data
 @NoArgsConstructor
 public class ItemStoreDto extends ItemDto {
+    private Long id;
     public ItemStoreDto(Long id, String name, BigDecimal price){
         this.id = id;
         this.name = name;

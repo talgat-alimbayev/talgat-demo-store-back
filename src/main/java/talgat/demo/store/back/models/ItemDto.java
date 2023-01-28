@@ -6,7 +6,7 @@ import java.math.BigDecimal;
 @NoArgsConstructor
 @Data
 public abstract class ItemDto {
-    protected Long id;
+//    protected Long id;
     protected String name;
     protected BigDecimal price;
 

@@ -37,9 +37,9 @@ public class ItemOrderControllerTest {
     MockMvc mockMvc;
     @MockBean
     ItemOrderService itemOrderService;
-    ItemOrderDto itemStore1 = new ItemOrderDto(1L, "кетчуп", new BigDecimal(789));
-    ItemOrderDto itemStore2 = new ItemOrderDto(2L, "шпроты", new BigDecimal(456));
-    ItemOrderDto itemStore3 = new ItemOrderDto(3L, "макароны", new BigDecimal(123));
+    ItemOrderDto itemStore1 = new ItemOrderDto("кетчуп", new BigDecimal(789));
+    ItemOrderDto itemStore2 = new ItemOrderDto("шпроты", new BigDecimal(456));
+    ItemOrderDto itemStore3 = new ItemOrderDto("макароны", new BigDecimal(123));
     List<ItemOrderDto> items = Arrays.asList(itemStore1, itemStore2, itemStore3);
     Long orderId = 1L;
     @Test

@@ -6,13 +6,16 @@ import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import talgat.demo.store.back.controllers.OrderController;
 import talgat.demo.store.back.controllers.UserController;
 import talgat.demo.store.back.models.User;
+import talgat.demo.store.back.models.UserDto;
 import talgat.demo.store.back.services.OrderService;
 import talgat.demo.store.back.services.UserService;
 
@@ -50,7 +53,8 @@ public class UserControllerTest {
 
     @Test
     public void findUserById_success() throws Exception {
-        Mockito.when(userService.findById(user.getId())).thenReturn(Optional.of(user));
+        Mockito.when(userService.findById(user.getId())).
+                thenReturn(new ResponseEntity<>(new UserDto(user), HttpStatus.OK));
 
         mockMvc.perform(MockMvcRequestBuilders
                         .get("http://localhost:8080/api/users/find-by-id")

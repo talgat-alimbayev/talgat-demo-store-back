@@ -23,20 +23,13 @@ public class UserController {
 
     @GetMapping(path = "api/users/find-by-id")
     public ResponseEntity<UserDto> findUserById(@RequestParam Long userId){
-        Optional<User> user = userService.findById(userId);
-        if (user.isPresent()) {
-            return new ResponseEntity<>(new UserDto(user.get()), HttpStatus.OK);
-        }
-        return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+        return userService.findById(userId);
+
     }
 
     @GetMapping(path = "api/users/find-by-username")
     public ResponseEntity<UserDto> findUserByUsername(@RequestParam String username){
-        Optional<User> user = userService.findByUsername(username);
-        if (user.isPresent()) {
-            return new ResponseEntity<>(new UserDto(user.get()), HttpStatus.OK);
-        }
-        return new ResponseEntity<>(null, HttpStatus.OK);
+        return userService.findByUsername(username);
     }
 
     @PostMapping(path = "api/users/new-user")

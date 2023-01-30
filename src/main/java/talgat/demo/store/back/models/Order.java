@@ -4,9 +4,6 @@ import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.ArrayList;
-import java.util.List;
-
 @Data
 @NoArgsConstructor
 @Entity
@@ -19,11 +16,11 @@ public class Order {
     private String deliveryName;
     private String email;
     private String comment;
-    @ManyToOne(cascade = CascadeType.MERGE)
+    @ManyToOne()
     @JoinColumn(name = "user_id")
     private User user;
 
-    public Order(OrderDto orderDto){
+    public Order(OrderDTO orderDto){
         this.id = orderDto.getId();
         this.deliveryAddress = orderDto.getDeliveryAddress();
         this.deliveryName = orderDto.getDeliveryName();

@@ -29,15 +29,15 @@ public class TalgatDemoStoreBackApplication {
 			@Override
 //			@Transactional
 			public void run(String... args) throws Exception {
-				User user = new User();
-				user.setUsername("talimbayev");
-				user.setPassword("dgnlkfdnglknfdg");
-				user.setFullName("talgat alimbayev");
-				user.setAddress("Almaty");
-				user.setEmail("alimbayev.talgat@gmail.com");
-				user.setRole("USER");
-
-				userRepo.save(user);
+//				User user = new User();
+//				user.setUsername("talimbayev");
+//				user.setPassword("dgnlkfdnglknfdg");
+//				user.setFullName("talgat alimbayev");
+//				user.setAddress("Almaty");
+//				user.setEmail("alimbayev.talgat@gmail.com");
+//				user.setRole("USER");
+//
+//				userRepo.save(user);
 //
 //				ItemStoreDto itemStoreDto = new ItemStoreDto();
 //				itemStoreDto.setName("кефир");
@@ -67,15 +67,15 @@ public class TalgatDemoStoreBackApplication {
 //				System.out.println(orderDto.toString());
 //				orderService.saveOrder(orderDto);
 //
-				User user2 = new User();
-				user2.setUsername("new random user");
-				user2.setPassword("qwerty");
-				user2.setFullName("danial");
-				user2.setAddress("Astana");
-				user2.setEmail("blah123@blah.com");
-				user2.setRole("USER");
-
-				userRepo.save(user2);
+//				User user2 = new User();
+//				user2.setUsername("new random user");
+//				user2.setPassword("qwerty");
+//				user2.setFullName("danial");
+//				user2.setAddress("Astana");
+//				user2.setEmail("blah123@blah.com");
+//				user2.setRole("USER");
+//
+//				userRepo.save(user2);
 //
 //				ItemStoreDto itemStoreDto3 = itemStoreService.findItemById(2L).getBody();
 //				ItemStoreDto itemStoreDto4 = itemStoreService.findItemById(7L).getBody();

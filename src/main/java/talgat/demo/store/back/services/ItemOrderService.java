@@ -2,7 +2,7 @@ package talgat.demo.store.back.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import talgat.demo.store.back.models.ItemOrderDto;
+import talgat.demo.store.back.models.ItemOrderDTO;
 import talgat.demo.store.back.repositories.ItemOrderRepository;
 
 import java.util.ArrayList;
@@ -17,9 +17,9 @@ public class ItemOrderService {
         this.itemOrderRepo = itemOrderRepo;
     }
 
-    public Iterable<ItemOrderDto> findItemsByOrder(Long id){
-        List<ItemOrderDto> items = new ArrayList<>();
-        itemOrderRepo.findByOrderId(id).forEach(itemOrder -> items.add(new ItemOrderDto(itemOrder)));
+    public Iterable<ItemOrderDTO> findItemsByOrder(Long id){
+        List<ItemOrderDTO> items = new ArrayList<>();
+        itemOrderRepo.findByOrderId(id).forEach(itemOrder -> items.add(new ItemOrderDTO(itemOrder)));
         return items;
     }
 }

@@ -12,7 +12,7 @@ public class ItemOrder extends ItemAbstract {
     @ManyToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "order_id")
     private Order order;
-    public ItemOrder(ItemDto itemDto){
+    public ItemOrder(ItemDTO itemDto){
         this.name = itemDto.getName();
         this.price = itemDto.getPrice();
     }

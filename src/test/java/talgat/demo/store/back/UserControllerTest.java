@@ -12,18 +12,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
-import talgat.demo.store.back.controllers.OrderController;
 import talgat.demo.store.back.controllers.UserController;
 import talgat.demo.store.back.models.User;
-import talgat.demo.store.back.models.UserDto;
-import talgat.demo.store.back.services.OrderService;
+import talgat.demo.store.back.models.UserDTO;
 import talgat.demo.store.back.services.UserService;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
-import java.util.Optional;
-import java.util.stream.Collectors;
 
 import static org.hamcrest.Matchers.hasSize;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
@@ -54,7 +46,7 @@ public class UserControllerTest {
     @Test
     public void findUserById_success() throws Exception {
         Mockito.when(userService.findById(user.getId())).
-                thenReturn(new ResponseEntity<>(new UserDto(user), HttpStatus.OK));
+                thenReturn(new ResponseEntity<>(new UserDTO(user), HttpStatus.OK));
 
         mockMvc.perform(MockMvcRequestBuilders
                         .get("http://localhost:8080/api/users/find-by-id")

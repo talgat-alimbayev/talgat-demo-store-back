@@ -5,19 +5,15 @@ import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
-import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import talgat.demo.store.back.controllers.ItemStoreController;
-import talgat.demo.store.back.models.ItemStore;
-import talgat.demo.store.back.models.ItemStoreDto;
-import talgat.demo.store.back.repositories.ItemStoreRepository;
+import talgat.demo.store.back.models.ItemStoreDTO;
 import talgat.demo.store.back.services.ItemStoreService;
 
 import java.math.BigDecimal;
@@ -41,10 +37,10 @@ public class ItemStoreControllerTest {
     ObjectMapper objectMapper;
     @MockBean
     ItemStoreService itemStoreService;
-    ItemStoreDto itemStore1 = new ItemStoreDto(1L, "кетчуп", new BigDecimal(789));
-    ItemStoreDto itemStore2 = new ItemStoreDto(2L, "шпроты", new BigDecimal(456));
-    ItemStoreDto itemStore3 = new ItemStoreDto(3L, "макароны", new BigDecimal(123));
-    List<ItemStoreDto> items = Arrays.asList(itemStore1, itemStore2, itemStore3);
+    ItemStoreDTO itemStore1 = new ItemStoreDTO(1L, "кетчуп", new BigDecimal(789));
+    ItemStoreDTO itemStore2 = new ItemStoreDTO(2L, "шпроты", new BigDecimal(456));
+    ItemStoreDTO itemStore3 = new ItemStoreDTO(3L, "макароны", new BigDecimal(123));
+    List<ItemStoreDTO> items = Arrays.asList(itemStore1, itemStore2, itemStore3);
     @Test
     public void findAllItems_success() throws Exception {
 

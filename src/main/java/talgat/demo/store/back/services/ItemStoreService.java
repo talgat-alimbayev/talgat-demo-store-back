@@ -5,7 +5,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import talgat.demo.store.back.models.ItemStore;
-import talgat.demo.store.back.models.ItemStoreDto;
+import talgat.demo.store.back.models.ItemStoreDTO;
 import talgat.demo.store.back.repositories.ItemStoreRepository;
 
 import java.util.ArrayList;
@@ -20,15 +20,15 @@ public class ItemStoreService {
         this.itemStoreRepo = itemStoreRepo;
     }
 
-    public Iterable<ItemStoreDto> findAllItems(){
-        List<ItemStoreDto> items = new ArrayList<>();
-        itemStoreRepo.findAll().forEach(itemStore -> items.add(new ItemStoreDto(itemStore)));
+    public Iterable<ItemStoreDTO> findAllItems(){
+        List<ItemStoreDTO> items = new ArrayList<>();
+        itemStoreRepo.findAll().forEach(itemStore -> items.add(new ItemStoreDTO(itemStore)));
         return items;
     }
 
-    public Iterable<ItemStoreDto> findItemsByIds(List<Long> ids){
-        List<ItemStoreDto> items = new ArrayList<>();
-        itemStoreRepo.findAllById(ids).forEach(itemStore -> items.add(new ItemStoreDto(itemStore)));
+    public Iterable<ItemStoreDTO> findItemsByIds(List<Long> ids){
+        List<ItemStoreDTO> items = new ArrayList<>();
+        itemStoreRepo.findAllById(ids).forEach(itemStore -> items.add(new ItemStoreDTO(itemStore)));
         return items;
     }
 
@@ -36,25 +36,25 @@ public class ItemStoreService {
         return itemStoreRepo.findByNameIn(names);
     }
 
-    public ResponseEntity<ItemStoreDto> findItemById(Long id){
+    public ResponseEntity<ItemStoreDTO> findItemById(Long id){
         Optional<ItemStore> itemOptional = itemStoreRepo.findById(id);
         if (itemOptional.isPresent()){
-            ItemStoreDto itemOrderDto = new ItemStoreDto(itemOptional.get());
+            ItemStoreDTO itemOrderDto = new ItemStoreDTO(itemOptional.get());
             return new ResponseEntity<>(itemOrderDto, HttpStatus.OK);
         }
         return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
     }
 
-    public ResponseEntity<ItemStoreDto> findItemByName(String name){
+    public ResponseEntity<ItemStoreDTO> findItemByName(String name){
         Optional<ItemStore> itemOptional =  itemStoreRepo.findByName(name);
         if (itemOptional.isPresent()){
-            ItemStoreDto itemStoreDto = new ItemStoreDto(itemOptional.get());
+            ItemStoreDTO itemStoreDto = new ItemStoreDTO(itemOptional.get());
             return new ResponseEntity<>(itemStoreDto, HttpStatus.OK);
         }
         return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
     }
-    public ItemStoreDto createItem(ItemStoreDto itemStoreDto){
+    public ItemStoreDTO createItem(ItemStoreDTO itemStoreDto){
         ItemStore itemStore = new ItemStore(itemStoreDto);
-        return new ItemStoreDto(itemStoreRepo.save(itemStore));
+        return new ItemStoreDTO(itemStoreRepo.save(itemStore));
     }
 }

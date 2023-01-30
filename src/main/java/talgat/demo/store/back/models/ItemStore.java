@@ -17,7 +17,7 @@ public class ItemStore extends ItemAbstract {
         this.name = name;
         this.price = price;
     }
-    public ItemStore(ItemStoreDto itemStoreDto){
+    public ItemStore(ItemStoreDTO itemStoreDto){
         this.name = itemStoreDto.getName();
         this.price = itemStoreDto.getPrice();
     }

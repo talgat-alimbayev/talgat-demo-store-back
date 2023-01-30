@@ -28,16 +28,18 @@ public class OrderService {
         this.orderEmailService = orderEmailService;
     }
     @Transactional
-    public ResponseEntity<OrderDto> saveOrder(OrderDto orderDto){
-        Optional<User> userOptional = userRepo.findById(orderDto.getUserId());
+    public ResponseEntity<OrderDTO> saveOrder(OrderCompleteDTO orderCompleteDto){
+        Optional<User> userOptional = userRepo.findById(orderCompleteDto.getUserId());
         if (userOptional.isPresent()){
             User user = userOptional.get();
+
+            OrderDTO orderDto = new OrderDTO(orderCompleteDto);
 
             Order order = new Order(orderDto);
             order.setUser(user);
             orderRepo.save(order);
 
-            List<ItemOrderDto> itemsOrderDto = orderDto.getItems();
+            List<ItemOrderDTO> itemsOrderDto = orderCompleteDto.getItems();
             List<ItemOrder> itemsOrder = new ArrayList<>();
             itemsOrderDto.forEach(itemOrderDto -> {
                 itemsOrder.add(new ItemOrder(itemOrderDto));
@@ -52,19 +54,21 @@ public class OrderService {
         return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
     }
 
-    public Iterable<OrderDto> findAllOrders(){
+    public Iterable<OrderDTO> findAllOrders(){
         Iterable<Order> orders = orderRepo.findAll();
-        List<OrderDto> ordersDto = new ArrayList<OrderDto>();
+        List<OrderDTO> ordersDto = new ArrayList<OrderDTO>();
         orders.forEach(order -> {
-            ordersDto.add(new OrderDto(order));
+            ordersDto.add(new OrderDTO(order));
         });
         return ordersDto;
     }
 
-    public Iterable<OrderDto> findByUserId(Long userId){
+    public Iterable<OrderDTO> findByUserId(Long userId){
         Iterable<Order> orders = orderRepo.findByUser(userId);
-        List<OrderDto> ordersDto = new ArrayList<>();
-        orders.forEach(order -> {ordersDto.add(new OrderDto(order)); } );
+        List<OrderDTO> ordersDto = new ArrayList<>();
+        orders.forEach(order -> {
+            ordersDto.add(new OrderDTO(order));
+        } );
         return ordersDto;
     }
 }

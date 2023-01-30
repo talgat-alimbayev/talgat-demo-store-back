@@ -7,13 +7,15 @@ import java.math.BigDecimal;
 
 @Data
 @NoArgsConstructor
-public class ItemOrderDto extends ItemDto {
-
-    public ItemOrderDto(String name, BigDecimal price) {
+public class ItemStoreDTO extends ItemDTO {
+    private Long id;
+    public ItemStoreDTO(Long id, String name, BigDecimal price){
+        this.id = id;
         this.name = name;
         this.price = price;
     }
-    public ItemOrderDto(ItemAbstract itemAbstract) {
+    public ItemStoreDTO(ItemAbstract itemAbstract) {
+        this.id = itemAbstract.getId();
         this.name = itemAbstract.getName();
         this.price = itemAbstract.getPrice();
     }

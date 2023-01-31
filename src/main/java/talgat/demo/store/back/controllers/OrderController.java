@@ -12,7 +12,6 @@ import talgat.demo.store.back.services.OrderService;
 
 @RestController
 @RequestMapping(produces = "application/json")
-@CrossOrigin(origins = "*")
 @Slf4j
 public class OrderController {
     private OrderService orderService;
@@ -20,7 +19,6 @@ public class OrderController {
     public OrderController(OrderService orderService) {
         this.orderService = orderService;
     }
-
     @PostMapping(path = "api/orders/save", consumes = "application/json")
     @ResponseStatus(HttpStatus.CREATED)
     public ResponseEntity<OrderDTO> saveOrder(@RequestBody @Valid OrderCompleteDTO orderCompleteDTO){

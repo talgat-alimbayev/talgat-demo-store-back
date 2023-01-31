@@ -47,7 +47,7 @@ public class OrderService {
             itemsOrder.forEach(itemOrder -> itemOrder.setOrder(order));
             itemOrderRepo.saveAll(itemsOrder);
 
-            orderEmailService.sendOrderEmail(orderDto);
+            orderEmailService.sendOrderEmail(orderCompleteDto);
 
             return new ResponseEntity<>(orderDto, HttpStatus.CREATED);
         }

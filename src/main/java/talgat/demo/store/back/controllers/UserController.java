@@ -10,7 +10,6 @@ import talgat.demo.store.back.services.UserService;
 
 @RestController
 @RequestMapping(produces = "application/json")
-@CrossOrigin(origins = "*")
 @Slf4j
 public class UserController {
     private UserService userService;
@@ -23,7 +22,6 @@ public class UserController {
     public ResponseEntity<UserDTO> findUserById(@RequestParam Long userId){
         log.info("fetching user by id=" + userId.toString());
         return userService.findById(userId);
-
     }
 
     @GetMapping(path = "api/users/find-by-username")

@@ -13,7 +13,6 @@ import java.util.List;
 
 @RestController
 @RequestMapping(produces = "application/json")
-@CrossOrigin(origins = {"http://localhost:3870", "http://localhost:8081", "http://localhost:8082"})
 @Slf4j
 public class ItemStoreController {
     private ItemStoreService itemStoreService;

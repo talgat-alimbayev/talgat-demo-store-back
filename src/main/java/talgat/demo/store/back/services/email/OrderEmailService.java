@@ -5,7 +5,7 @@ import org.springframework.amqp.core.MessageProperties;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.amqp.support.converter.MessageConverter;
 import org.springframework.stereotype.Service;
-import talgat.demo.store.back.models.OrderDTO;
+import talgat.demo.store.back.models.OrderCompleteDTO;
 
 @Service
 public class OrderEmailService {
@@ -16,10 +16,10 @@ public class OrderEmailService {
         this.rabbit = rabbit;
     }
 
-    public void sendOrderEmail(OrderDTO orderDto){
+    public void sendOrderEmail(OrderCompleteDTO orderCompleteDTO){
         MessageConverter converter = rabbit.getMessageConverter();
         MessageProperties properties = new MessageProperties();
-        Message message = converter.toMessage(orderDto, properties);
+        Message message = converter.toMessage(orderCompleteDTO, properties);
         rabbit.send("talgat-demo-store", "order-email", message);
     }
 }

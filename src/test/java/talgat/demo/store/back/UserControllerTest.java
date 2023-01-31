@@ -17,7 +17,6 @@ import talgat.demo.store.back.models.User;
 import talgat.demo.store.back.models.UserDTO;
 import talgat.demo.store.back.services.UserService;
 
-import static org.hamcrest.Matchers.hasSize;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
